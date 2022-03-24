@@ -95,16 +95,12 @@ const f7 = (movies: UserType[], str: string): UserType[]=> {
 
 // 8. Создать функцию, которая бы принимала 3 параметра: 1)массив фильмов , 2) строка(название поля, например 'title') и строку/число(значение поля "Black Widow"). А результатом этой функции должен быть отфильтрованный массив, где параметры 2 и 3 равны в объекте фильма. Например: передаем (films, 'title', 'Black Widow') и на выходе получаем фильм с id=1 если передаем (films, 'year', 2011) , то получаем фильм с id=2
 
-// не решена 
 
-const f8 = (movies: UserType[], key: string, val: string | number)=> {
-  return movies
-        .filter((movie) => {
-          if (Object.keys(movie).filter((keys) => (keys === key)) && 
-          Object.values(movie).filter((values) => (values === val))){
-            return movie;
-          }
-        });
+const f8 = (movies: UserType[], key: keyof UserType, val: string | number): UserType[]=> {
+  const result = movies.filter((item) => item[key] === val);
+  
+  return result
 }
 
-// console.log(f8(data, 'tittle', 'Black Widow'));
+console.log(f8(data, 'title', 'Black Widow'));
+console.log(f8(data, 'year', '2011'));
