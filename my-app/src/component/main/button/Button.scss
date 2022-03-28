@@ -1,0 +1,22 @@
+.button {
+  & a {
+    font-family: Ubuntu;
+    display: block;
+    width: 200px;
+    height: 50px;
+    background-color: rgb(231, 229, 252);
+    color: rgb(70, 66, 116);
+    border-radius: 50px;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 50px;
+    text-align: center;
+    transition: 1s;
+
+    &:hover {
+      background-color: rgb(70, 66, 116);
+      color: rgb(231, 229, 252);
+    }
+  }
+}
