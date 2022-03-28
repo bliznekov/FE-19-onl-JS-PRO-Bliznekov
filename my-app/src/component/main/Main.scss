@@ -4,7 +4,11 @@
   .section {
     width: 1170px;
     margin: auto;
-    padding: 300px 5px;
+    height: 100%;
+    padding: 0 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     position: relative;
     z-index: 1;
 
