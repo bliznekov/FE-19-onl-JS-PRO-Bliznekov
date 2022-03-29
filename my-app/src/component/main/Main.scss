@@ -1,0 +1,44 @@
+.main {
+  height: 90vh;
+
+  .section {
+    width: 1170px;
+    margin: auto;
+    height: 100%;
+    padding: 0 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+
+
+    .main-title {
+      font-family: Ubuntu;
+      font-size: 3rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 3.5rem;
+      letter-spacing: 0em;
+      color: rgb(231, 229, 252);
+      width: 300px;
+      margin-bottom: 40px;
+
+      span {
+        color: rgb(70, 66, 116);
+      }
+    }
+
+    .main-subtitle {
+      font-family: Ubuntu;
+      font-size: 1.5rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 2rem;
+      letter-spacing: 0em;
+      color: rgb(231, 229, 252);
+      width: 40%;
+      margin-bottom: 50px;
+    }
+  }
+}

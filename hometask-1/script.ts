@@ -79,7 +79,7 @@ const f5 = (movies: UserType[], num: number): UserType[]=> {
 
 const f6 = (movies: UserType[], str: string): UserType[]=> {
   return movies
-        .filter((item) => (item.title.includes(str)));
+        .filter((item) => (item.title.toLowerCase().includes(str.toLowerCase())));
 }
 
 // console.log(f6(data, 'Potter'));
