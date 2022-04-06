@@ -3,6 +3,7 @@ import './App.scss';
 import Header from './component/header/Header';
 import Main from './component/main/Main';
 import Posts from './component/posts/Posts';
+import Registration from './component/registrtion/Registration';
 import Timer from './component/timer/Timer';
 
 
@@ -13,7 +14,7 @@ const App: React.FC = () => {
       <Header />
       <Main />
       <Posts />
-      <Timer />
+      <Registration/>
     </div>
   );
 }

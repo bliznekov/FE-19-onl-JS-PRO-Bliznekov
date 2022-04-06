@@ -1,3 +1,4 @@
+import Timer from '../timer/Timer';
 import './Header.scss'
 import Menu from './menu/Menu';
 
@@ -9,6 +10,9 @@ function Header(){
         <Menu value='Profile' handleClick={() => console.log("Profile")} link='/profile' />
         <Menu value='Contacts' handleClick={() => console.log("Contacts")} link='/contacts' />
         <Menu value='About us' handleClick={() => console.log("About us")} link='/about'/>
+        <div>
+          <Timer/>
+        </div>
       </div>
     </div>
   );
