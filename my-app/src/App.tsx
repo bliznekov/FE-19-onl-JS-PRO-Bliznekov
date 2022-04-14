@@ -1,28 +1,25 @@
-import React, { useState } from "react";
-import "./App.scss";
+import React, { useEffect, useState } from "react";
 import Header from "./component/header/Header";
+import Registration from "./component/registration/Registration";
 import Login from "./component/login/Login";
-import Main from "./component/main/Main";
 import Posts from "./component/posts/Posts";
-import Registration from "./component/registrtion/Registration";
-import Timer from "./component/timer/Timer";
-import LanguageContext from "./contexts/LanguageContext";
+
+import "./App.scss";
+import Post from "./component/post/Post";
 
 const App: React.FC = () => {
-    const [lang, setLang] = useState("ru");
-
     return (
-        <LanguageContext.Provider value={{ lang, setLang }}>
-            <div className="App">
-                <Header />
-                <Main />
+        <div className="app-container">
+            <Header />
+            <div className="app-content">
+                <Registration />
+
+                <Login />
+                <Post id={12} />
+
                 <Posts />
-                <div className="app-content">
-                    <Registration />
-                    <Login />
-                </div>
             </div>
-        </LanguageContext.Provider>
+        </div>
     );
 };
 

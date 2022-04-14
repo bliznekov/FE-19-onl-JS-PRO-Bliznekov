@@ -1,5 +1,10 @@
 type FormValuesType = {
-  [prop: string]: string
+    [prop: string]: string
 }
 
-export default FormValuesType
+// {
+//     "email": "imail@dfsd.fds",
+//     "paswword": "imail@dfsd.fds",
+// }
+
+export default FormValuesType;
