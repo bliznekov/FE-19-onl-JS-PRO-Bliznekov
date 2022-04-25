@@ -2,18 +2,18 @@ import React, { useState } from "react";
 import FormValuesType from "../../types/formValuesType";
 import Button from "../ui/button/Button";
 import FormCard from "../ui/formCard/FormCard";
-import TextField from "../ui/textField/TextField";
+import FormTextField from "../ui/formTextField/FormTextField";
 
 const Registration: React.FC = () => {
     const [values, setValues] = useState<FormValuesType>({});
 
     const handleSubmit = () => {
         console.log(values);
-    }
+    };
 
     return (
         <FormCard header="Registration">
-            <TextField
+            <FormTextField
                 autofocus
                 label="Email"
                 type="email"
@@ -21,18 +21,16 @@ const Registration: React.FC = () => {
                 values={values}
                 setValues={setValues}
             />
-            <TextField
+            <FormTextField
                 label="Password"
                 type="password"
                 name="password"
                 values={values}
                 setValues={setValues}
             />
-            <Button onClick={handleSubmit}>
-                Registration
-            </Button>
+            <Button onClick={handleSubmit}>Registration</Button>
         </FormCard>
-    )
-}
+    );
+};
 
 export default Registration;

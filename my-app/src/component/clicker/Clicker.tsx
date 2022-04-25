@@ -23,14 +23,6 @@ const Clicker: React.FC = () => {
             <span>' '</span>
             <span>{count2}</span>
             <button onClick={increment}>+</button>
-            {/* {count < 5 &&
-                <button
-                    style={{ background: count % 2 ? "red" : "green" }}
-                    onClick={increment}
-                >
-                    +
-                </button>
-                } */}
         </div>
     );
 };
