@@ -1,74 +1,70 @@
 import React from "react";
 import Pagination from "@mui/material/Pagination";
-import { MenuItem, Select, SelectChangeEvent, TextField } from "@mui/material";
-import PostsFilterType from "./PostsFilterType";
+import { MenuItem, Select, SelectChangeEvent } from "@mui/material";
+import TextField from "../ui/textField/TextField";
+import PostsFilterType, { PostsOrder } from "./PostsFilterTypes";
+import {
+    setLimit,
+    setOrdering,
+    setPage,
+    setAuthor,
+    setLesson,
+} from "./PostsFilterActionCreators";
 
 import "./Posts.scss";
 
 type PropsType = {
     count: number;
-    filter: PostsFilterType;
-    setFilter: (callback: (v: PostsFilterType) => PostsFilterType) => void;
+    state: PostsFilterType;
+    dispatch: any;
 };
 
-const PostsFilter: React.FC<PropsType> = ({ count, filter, setFilter }) => {
+const PostsFilter: React.FC<PropsType> = ({ count, state, dispatch }) => {
+    const updateAuthor = (value: string) => {
+        dispatch(setAuthor(value));
+    };
+
+    const updateLesson = (value: string) => {
+        dispatch(setLesson(value));
+    };
+
+    const handleChangeOrdering = (event: SelectChangeEvent) => {
+        dispatch(setOrdering(event.target.value as PostsOrder));
+    };
+
     const handleChangeLimit = (event: SelectChangeEvent) => {
-        setFilter((prevValue) => ({
-            ...prevValue,
-            page: 1,
-            limit: +event.target.value,
-        }));
+        dispatch(setLimit(+event.target.value));
     };
 
     const handleChangePage = (
         event: React.ChangeEvent<unknown>,
         value: number
     ) => {
-        setFilter((prevValue) => ({
-            ...prevValue,
-            page: value,
-        }));
-    };
-
-    const handleChangeAuthor: any = (
-        event: React.ChangeEvent<HTMLInputElement>,
-        value: number
-    ) => {
-        setFilter((prevValue) => ({
-            ...prevValue,
-            author: +event.target.value,
-        }));
-    };
-
-    const handleChangelessonNum: any = (
-        event: React.ChangeEvent<HTMLInputElement>,
-        value: number
-    ) => {
-        setFilter((prevValue) => ({
-            ...prevValue,
-            lessonNum: +event.target.value,
-        }));
+        dispatch(setPage(value));
     };
 
     return (
-        <div className="posts-container">
+        <div className="posts-filter">
             <TextField
-                id="outlined-number"
                 label="Author"
-                type="number"
-                onChange={handleChangeAuthor}
+                value={state.author?.toString()}
+                setValue={updateAuthor}
             />
+
             <TextField
-                id="outlined-number"
-                label="Lesson Num"
-                type="number"
-                onChange={handleChangelessonNum}
+                label="Lesson"
+                value={state.lesson_num?.toString()}
+                setValue={updateLesson}
             />
-            <Select
-                label="Items per page"
-                value={filter.limit.toString()}
-                onChange={handleChangeLimit}
-            >
+
+            <Select value={state.ordering} onChange={handleChangeOrdering}>
+                <MenuItem value={PostsOrder.idAsc}>ASC id</MenuItem>
+                <MenuItem value={PostsOrder.idDesc}>DESC id</MenuItem>
+                <MenuItem value={PostsOrder.dateAsc}>ASC date</MenuItem>
+                <MenuItem value={PostsOrder.dateDesc}>DESC date</MenuItem>
+            </Select>
+
+            <Select value={state.limit.toString()} onChange={handleChangeLimit}>
                 <MenuItem value={10}>Ten</MenuItem>
                 <MenuItem value={20}>Twenty</MenuItem>
                 <MenuItem value={30}>Thirty</MenuItem>
@@ -76,9 +72,9 @@ const PostsFilter: React.FC<PropsType> = ({ count, filter, setFilter }) => {
 
             <Pagination
                 className="pagination"
-                page={filter.page}
+                page={state.page}
                 onChange={handleChangePage}
-                count={Math.ceil(count / filter.limit)}
+                count={Math.ceil(count / state.limit)}
             />
         </div>
     );
