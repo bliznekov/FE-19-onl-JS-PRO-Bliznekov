@@ -1,27 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setValue, shiftValue } from "../../store/clicker/actionCreators";
 
 const Clicker: React.FC = () => {
-    const PI = 3.14;
+    const count = useSelector((state: any) => state.clicker.value);
+    const dispatch = useDispatch();
 
-    const [count, setCount] = useState(0);
-    const [count2, setCount2] = useState(0);
-
-    useEffect(() => {}, [count, count2]);
+    const reset = () => dispatch(setValue(0));
 
     const increment = () => {
-        setCount2((prevCount) => prevCount + 1);
+        dispatch(shiftValue(1));
     };
 
     const decriment = () => {
-        setCount((prevCount) => prevCount - 1);
+        dispatch(shiftValue(-1));
     };
 
     return (
         <div>
+            <button onClick={reset}>reset</button>
             <button onClick={decriment}>-</button>
             <span>{count}</span>
-            <span>' '</span>
-            <span>{count2}</span>
             <button onClick={increment}>+</button>
         </div>
     );
