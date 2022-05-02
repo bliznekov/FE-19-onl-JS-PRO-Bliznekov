@@ -10,6 +10,7 @@ const LINKS = [
     { url: "/login", text: "Login" },
     { url: "/registration", text: "Registration" },
     { url: "/posts", text: "Posts" },
+    { url: "/clicker", text: "Cliker" },
 ];
 
 const Header: React.FC = () => {
