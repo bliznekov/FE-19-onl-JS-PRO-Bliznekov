@@ -9,7 +9,7 @@ const Registration: React.FC = () => {
 
     const handleSubmit = () => {
         console.log(values);
-    };
+    }
 
     return (
         <FormCard header="Registration">
@@ -28,9 +28,11 @@ const Registration: React.FC = () => {
                 values={values}
                 setValues={setValues}
             />
-            <Button onClick={handleSubmit}>Registration</Button>
+            <Button onClick={handleSubmit}>
+                Registration
+            </Button>
         </FormCard>
-    );
-};
+    )
+}
 
 export default Registration;
