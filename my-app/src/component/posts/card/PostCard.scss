@@ -4,7 +4,7 @@
     border-radius: 8px;
     max-width: 200px;
     max-height: 400px;
-    
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -49,6 +49,12 @@
         &._disliked {
             path {
                 fill: #aa3333;
+            }
+        }
+
+        &._marked {
+            path {
+                fill: #aa6733;
             }
         }
     }
