@@ -11,7 +11,7 @@ import {
     setLesson,
 } from "./PostsFilterActionCreators";
 
-import "./Posts.scss";
+import "./PostsPage.scss";
 
 type PropsType = {
     count: number;
