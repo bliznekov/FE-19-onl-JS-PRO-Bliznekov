@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import PostsFilterType from "../../component/posts/PostsFilterTypes";
+import PostsFilterType from "../../component/postsPage/PostsFilterTypes";
 import PostType from "../../types/postType";
 
 const URL = "https://studapi.teachmeskills.by/blog/posts/";
@@ -37,3 +37,21 @@ export const fetchPosts = createAsyncThunk<
         }
     }
 );
+
+export const fetchAllPosts = createAsyncThunk<
+    FetchPostsType,
+    undefined,
+    { rejectValue: string }
+>("posts/fetchAllPosts", async (_, thunkApi) => {
+    let url = `${URL}?limit=${1000}`;
+
+    try {
+        const response = await axios.get(url);
+        return {
+            data: response.data.results as PostType[],
+            count: response.data.count as number,
+        };
+    } catch {
+        return thunkApi.rejectWithValue("Server error!!!");
+    }
+});
