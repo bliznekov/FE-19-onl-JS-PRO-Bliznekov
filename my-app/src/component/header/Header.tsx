@@ -14,6 +14,7 @@ const LINKS = [
 
 const Header: React.FC = () => {
     const { lang, setLang } = useTranslate();
+    const nextLang = lang === "en" ? "ru" : "en";
 
     return (
         <nav className="header-container">
@@ -37,13 +38,14 @@ const Header: React.FC = () => {
                 ))}
             </ul>
 
-            <div>
-                {lang === "en" ? (
-                    <button onClick={() => setLang("ru")}>ru</button>
-                ) : (
-                    <button onClick={() => setLang("en")}>en</button>
-                )}
+            <div className="controls">
                 <Timer />
+                <button
+                    className="lang-buttun"
+                    onClick={() => setLang(nextLang)}
+                >
+                    {nextLang}
+                </button>
             </div>
         </nav>
     );

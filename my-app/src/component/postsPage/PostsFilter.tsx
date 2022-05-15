@@ -1,6 +1,6 @@
 import React from "react";
 import Pagination from "@mui/material/Pagination";
-import { MenuItem, Select, SelectChangeEvent } from "@mui/material";
+import { MenuItem, Paper, SelectChangeEvent } from "@mui/material";
 import TextField from "../ui/textField/TextField";
 import PostsFilterType, { PostsOrder } from "./PostsFilterTypes";
 import {
@@ -10,8 +10,7 @@ import {
     setAuthor,
     setLesson,
 } from "./PostsFilterActionCreators";
-
-import "./PostsPage.scss";
+import Select from "../ui/select/Select";
 
 type PropsType = {
     count: number;
@@ -28,12 +27,12 @@ const PostsFilter: React.FC<PropsType> = ({ count, state, dispatch }) => {
         dispatch(setLesson(value));
     };
 
-    const handleChangeOrdering = (event: SelectChangeEvent) => {
-        dispatch(setOrdering(event.target.value as PostsOrder));
+    const handleChangeOrdering = (value: string) => {
+        dispatch(setOrdering(value as PostsOrder));
     };
 
-    const handleChangeLimit = (event: SelectChangeEvent) => {
-        dispatch(setLimit(+event.target.value));
+    const handleChangeLimit = (value: string) => {
+        dispatch(setLimit(+value));
     };
 
     const handleChangePage = (
@@ -44,7 +43,7 @@ const PostsFilter: React.FC<PropsType> = ({ count, state, dispatch }) => {
     };
 
     return (
-        <div className="posts-filter">
+        <Paper elevation={3} className="posts-filter">
             <TextField
                 label="Author"
                 value={state.author?.toString()}
@@ -57,14 +56,22 @@ const PostsFilter: React.FC<PropsType> = ({ count, state, dispatch }) => {
                 setValue={updateLesson}
             />
 
-            <Select value={state.ordering} onChange={handleChangeOrdering}>
+            <Select
+                label="Ordering"
+                value={state.ordering}
+                setValue={handleChangeOrdering}
+            >
                 <MenuItem value={PostsOrder.idAsc}>ASC id</MenuItem>
                 <MenuItem value={PostsOrder.idDesc}>DESC id</MenuItem>
                 <MenuItem value={PostsOrder.dateAsc}>ASC date</MenuItem>
                 <MenuItem value={PostsOrder.dateDesc}>DESC date</MenuItem>
             </Select>
 
-            <Select value={state.limit.toString()} onChange={handleChangeLimit}>
+            <Select
+                label="Posts per page"
+                value={state.limit.toString()}
+                setValue={handleChangeLimit}
+            >
                 <MenuItem value={10}>Ten</MenuItem>
                 <MenuItem value={20}>Twenty</MenuItem>
                 <MenuItem value={30}>Thirty</MenuItem>
@@ -76,7 +83,7 @@ const PostsFilter: React.FC<PropsType> = ({ count, state, dispatch }) => {
                 onChange={handleChangePage}
                 count={Math.ceil(count / state.limit)}
             />
-        </div>
+        </Paper>
     );
 };
 

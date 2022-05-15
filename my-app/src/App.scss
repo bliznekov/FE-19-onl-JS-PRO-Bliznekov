@@ -1,11 +1,15 @@
 .app-container {
   background-color: var(--background-color);
-  display: flex;
   min-height: 100vh;
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+}
+
+.center__content {
+  flex-grow: 1;
+  height: 100%;
+  display: flex;
   align-items: center;
   justify-content: center;
-
-  .app-content {
-    margin-top: 60px;
-  }
 }
