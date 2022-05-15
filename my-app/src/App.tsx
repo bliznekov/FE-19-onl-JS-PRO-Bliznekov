@@ -8,8 +8,10 @@ import PostsPage from "./component/postsPage/PostsPage";
 import PostPage from "./component/postPage/PostPage";
 
 import "./App.scss";
+import { useSelector } from "./component/hooks/useSelector";
 
 const App: React.FC = () => {
+    const logged = useSelector((state) => state.auth.logged);
     return (
         <BrowserRouter>
             <div className="app-container">
@@ -26,7 +28,11 @@ const App: React.FC = () => {
                                 </div>
                             }
                         />
-                        <Route path="/login/*" element={<Login />} />
+                        {!logged && (
+                            <>
+                                <Route path="/login/*" element={<Login />} />
+                            </>
+                        )}
                         <Route
                             path="/registration/*"
                             element={<Registration />}
