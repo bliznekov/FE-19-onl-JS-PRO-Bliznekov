@@ -5,8 +5,6 @@ import PostsCard from "./card/PostCard";
 import PostsFilter from "./PostsFilter";
 import { initialState, PostsFilterReducer } from "./PostsFilterReducer";
 
-import "./PostsPage.scss";
-
 type PropsType = {};
 
 const PostsServer: React.FC<PropsType> = () => {
@@ -23,7 +21,7 @@ const PostsServer: React.FC<PropsType> = () => {
     }, [state]);
 
     return (
-        <div className="posts-container">
+        <div>
             <PostsFilter count={count} state={state} dispatch={dispatch} />
 
             <div className="cards">

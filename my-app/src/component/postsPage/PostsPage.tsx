@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Button from "../ui/button/Button";
-import PostsServer from "./PostServer";
-import PostsFront from "./PostsFront";
+import PostsServer from "./PostsServer";
 
 import "./PostsPage.scss";
+import PostsFront from "./PostsFront";
+import Button from "../ui/button/Button";
 
 type PropsType = {};
 
@@ -14,7 +14,11 @@ const PostsPage: React.FC<PropsType> = () => {
 
     return (
         <div className="posts-container">
-            <Button onClick={handleToggleMode}>Toggle</Button>
+            <div className="toggle-button">
+                <Button onClick={handleToggleMode}>
+                    {isServerMode ? "Front" : "Server"}
+                </Button>
+            </div>
             <div className="mode-container">
                 {isServerMode ? <PostsServer /> : <PostsFront />}
             </div>
