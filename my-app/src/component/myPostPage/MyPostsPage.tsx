@@ -20,10 +20,11 @@ const MyPostsPage: React.FC<PropsType> = () => {
 
     return (
         <div className="posts-container">
-            <div className="cards">
+            <div data-testid="cards" className="cards">
                 {data.map((item) => (
                     <PostCard key={item.id} data={item} />
                 ))}
+                {!loading && !error && !data.length && "Empty data"}
             </div>
             {loading && "Loading..."}
             {error}
