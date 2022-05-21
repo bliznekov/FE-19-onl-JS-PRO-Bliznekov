@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { PostGrade } from "../../enums/PostGrade";
 import Storage from "../../helpers/Storage";
 import PostType from "../../types/postType";
-import { fetchAllPosts, fetchMyPosts, fetchPosts } from "./postsThunks";
+import { fetchPosts } from "./postsThunks";
 
 type GradesType = {
     [prop: number]: PostGrade;
@@ -29,6 +29,20 @@ const postsSlice = createSlice({
     name: "posts",
     initialState,
     reducers: {
+        fetchAllPosts: () => {},
+        fetchMyPosts: () => {},
+        setPosts: (state, { payload }: PayloadAction<PostType[]>) => {
+            state.data = payload;
+        },
+        setPostsLoading: (state, { payload }: PayloadAction<boolean>) => {
+            state.loading = payload;
+        },
+        setPostsError: (
+            state,
+            { payload }: PayloadAction<string | undefined>
+        ) => {
+            state.error = payload;
+        },
         likePost: (state, { payload: PostId }: PayloadAction<number>) => {
             if (state.grades[PostId] === PostGrade.LIKE) {
                 delete state.grades[PostId];
@@ -73,39 +87,6 @@ const postsSlice = createSlice({
             state.data = payload.data;
             state.count = payload.count;
         });
-
-        builder.addCase(fetchAllPosts.pending, (state) => {
-            state.loading = true;
-            state.error = undefined;
-            state.data = [];
-        });
-
-        builder.addCase(fetchAllPosts.rejected, (state, { payload }) => {
-            state.loading = false;
-            state.error = payload;
-        });
-
-        builder.addCase(fetchAllPosts.fulfilled, (state, { payload }) => {
-            state.loading = false;
-            state.data = payload.data;
-            state.count = payload.count;
-        });
-
-        builder.addCase(fetchMyPosts.pending, (state) => {
-            state.loading = true;
-            state.error = undefined;
-            state.data = [];
-        });
-
-        builder.addCase(fetchMyPosts.rejected, (state, { payload }) => {
-            state.loading = false;
-            state.error = "Error";
-        });
-
-        builder.addCase(fetchMyPosts.fulfilled, (state, { payload }) => {
-            state.loading = false;
-            state.data = payload;
-        });
     },
 });
 
@@ -113,6 +94,4 @@ export const postsReducer = postsSlice.reducer;
 export const postsActions = {
     ...postsSlice.actions,
     fetchPosts,
-    fetchAllPosts,
-    fetchMyPosts,
 };
