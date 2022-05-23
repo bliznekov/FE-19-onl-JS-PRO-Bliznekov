@@ -4,12 +4,14 @@ import { useSelector } from "../../hooks/useSelector";
 
 const Username: React.FC = () => {
     const { fetchProfile } = useActions();
-    const access = useSelector((state) => state.auth.access);
+    const logged = useSelector((state) => state.auth.logged);
     const username = useSelector((state) => state.auth.profile.username);
 
     useEffect(() => {
-        fetchProfile();
-    }, [access]);
+        if (logged) {
+            fetchProfile();
+        }
+    }, [logged]);
 
     return <div className="header-username">{username}</div>;
 };
